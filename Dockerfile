@@ -9,4 +9,5 @@ FROM broadinstitute/gatk:4.1.4.1
 RUN conda install --quiet --yes -c bioconda plink2
 
 # install BWA
-RUN conda install --quiet --yes -c bioconda/label/cf201901 bwa
+RUN conda install -c bioconda bwa
+
