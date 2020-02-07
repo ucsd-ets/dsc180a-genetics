@@ -3,8 +3,6 @@ FROM ucsdets/scipy-ml-notebook:2019.4.6
 USER root
 
 # Install GATK
-#FROM broadinstitute/gatk:4.1.4.1
-
 RUN pwd && \
     apt-get update && \
     apt-get install --yes default-jdk && \
@@ -17,9 +15,8 @@ RUN pwd && \
     ls -al  && \
     cd /home/jovyan
 
+# Install BWA
+RUN conda install bwa=0.7.15
+
 # Install PLINK2
-RUN conda install --quiet --yes -c bioconda plink2
-
-# install BWA
-RUN conda install -c bioconda bwa
-
+RUN conda install -c bioconda plink2
