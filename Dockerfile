@@ -20,3 +20,5 @@ RUN conda install bwa=0.7.15
 
 # Install PLINK2
 RUN conda install -c bioconda plink2
+
+USER $NB_UID
