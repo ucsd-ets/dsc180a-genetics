@@ -16,9 +16,9 @@ RUN pwd && \
     cd /home/jovyan
 
 # Install BWA
-RUN conda install bwa=0.7.15
+RUN conda install -c bioconda bwa=0.7.15 plink2
 
 # Install PLINK2
-RUN conda install -c bioconda plink2
+#RUN conda install -c bioconda plink2
 
 USER $NB_UID
