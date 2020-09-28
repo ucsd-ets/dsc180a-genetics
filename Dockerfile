@@ -123,10 +123,6 @@ RUN mkdir /opt/JSplice && \
     cd /opt/JSplice && \
     python3 setup.py install
 
-# aRNApipe
-RUN mkdir /opt/aRNAPipe && \
-    git clone https://github.com/HudsonAlpha/aRNAPipe.git /opt/aRNAPipe
-
 # RUN chmod -R 777 /opt
 # Install BWA
 #RUN conda install -c bioconda bwa=0.7.15 plink2
@@ -134,4 +130,4 @@ RUN mkdir /opt/aRNAPipe && \
 # Install PLINK2
 #RUN conda install -c bioconda plink2
 
-# USER $NB_UID
+USER $NB_UID
