@@ -65,10 +65,6 @@ RUN wget http://www.bioinformatics.babraham.ac.uk/projects/trim_galore/trim_galo
     rm /tmp/trim_galore_v0.4.1.zip && \
     mv trim_galore_zip /opt/
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
-    python2 get-pip.py && \
-    python2 -m pip install Cython
-
 # path /opt/conda/bin/cutadapt
 RUN python3 -m pip install --upgrade cutadapt
 
@@ -76,8 +72,8 @@ RUN python3 -m pip install --upgrade cutadapt
 RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip -P /tmp && \
     unzip /tmp/fastqc_v0.11.5.zip && \
     mv FastQC /opt/ && \
-    chmod 755 /opt/FastQC/fastqc && \
-    rm -rf /tmp/fastqc_*
+    rm -rf /tmp/fastqc_* && \
+    chmod 777 /opt/FastQC/fastqc
 
 # STAR
 RUN wget https://github.com/alexdobin/STAR/archive/2.5.2b.zip -P /tmp && \
@@ -130,5 +126,15 @@ RUN mkdir /opt/JSplice && \
 
 # Install PLINK2
 #RUN conda install -c bioconda plink2
+
+
+RUN rm -rf /opt/*.bz2 && \
+    chmod -R +x /opt/*
+
+COPY r-bio.yaml /tmp
+RUN conda env create --file /tmp/r-bio.yaml && \
+    rm -rf /opt/conda/bin/R /opt/conda/lib/R && \
+    ln -s /opt/conda/envs/r-bio/bin/R /opt/conda/bin/R && \
+    ln -s /opt/conda/envs/r-bio/lib/R /opt/conda/lib/R
 
 USER $NB_UID
