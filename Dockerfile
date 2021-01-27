@@ -60,10 +60,10 @@ RUN apt-get install --yes ncurses-dev libbz2-dev liblzma-dev && \
     make install
 
 # Install TrimGalore and cutadapt
-RUN wget http://www.bioinformatics.babraham.ac.uk/projects/trim_galore/trim_galore_v0.4.1.zip -P /tmp/ && \
-    unzip /tmp/trim_galore_v0.4.1.zip && \
-    rm /tmp/trim_galore_v0.4.1.zip && \
-    mv trim_galore_zip /opt/
+RUN wget https://github.com/FelixKrueger/TrimGalore/archive/0.6.6.zip -P /tmp/ && \
+    unzip /tmp/0.6.6.zip && \
+    rm /tmp/0.6.6.zip && \
+    mv TrimGalore-0.6.6 /opt/
 
 # path /opt/conda/bin/cutadapt
 RUN python3 -m pip install --upgrade cutadapt
